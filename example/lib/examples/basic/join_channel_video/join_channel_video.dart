@@ -1,6 +1,5 @@
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:agora_rtc_engine_example/components/basic_video_configuration_widget.dart';
-import 'package:agora_rtc_engine_example/components/stats_monitoring_widget.dart';
 import 'package:agora_rtc_engine_example/config/agora.config.dart' as config;
 import 'package:agora_rtc_engine_example/components/example_actions_widget.dart';
 import 'package:agora_rtc_engine_example/components/log_sink.dart';
@@ -160,10 +159,7 @@ class _State extends State<JoinChannelVideo> {
       displayContentBuilder: (context, isLayoutHorizontal) {
         return Stack(
           children: [
-            StatsMonitoringWidget(
-              rtcEngine: _engine,
-              uid: 0,
-              child: AgoraVideoView(
+            AgoraVideoView(
                 controller: VideoViewController(
                   rtcEngine: _engine,
                   canvas: const VideoCanvas(uid: 0),
@@ -174,7 +170,6 @@ class _State extends State<JoinChannelVideo> {
                   _engine.startPreview();
                 },
               ),
-            ),
             Align(
               alignment: Alignment.topLeft,
               child: SingleChildScrollView(
@@ -184,10 +179,10 @@ class _State extends State<JoinChannelVideo> {
                     (e) => SizedBox(
                       width: 200,
                       height: 200,
-                      child: StatsMonitoringWidget(
-                        rtcEngine: _engine,
-                        uid: e,
-                        channelId: _controller.text,
+                      // child: StatsMonitoringWidget(
+                      //   rtcEngine: _engine,
+                      //   uid: e,
+                      //   channelId: _controller.text,
                         child: AgoraVideoView(
                           controller: VideoViewController.remote(
                             rtcEngine: _engine,
@@ -197,7 +192,7 @@ class _State extends State<JoinChannelVideo> {
                             useFlutterTexture: _isUseFlutterTexture,
                             useAndroidSurfaceView: _isUseAndroidSurfaceView,
                           ),
-                        ),
+                        // ),
                       ),
                     ),
                   )),
